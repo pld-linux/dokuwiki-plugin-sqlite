@@ -10,7 +10,7 @@ Group:		Applications/WWW
 Source0:	http://download.github.com/cosmocode-sqlite-fb39468.zip
 # Source0-md5:	cb14741dd492ae41022b5baa436c78e5
 URL:		http://wiki.splitbrain.org/plugin:sqlite
-BuildRequires:	rpmbuild(macros) >= 1.461
+BuildRequires:	rpm-php-pearprov >= 4.4.2-11
 BuildRequires:	rpmbuild(macros) >= 1.520
 Requires:	dokuwiki >= 20091225
 Requires:	php-common >= 4:%{php_min_version}
