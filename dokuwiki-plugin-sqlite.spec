@@ -1,15 +1,15 @@
-%include	/usr/lib/rpm/macros.php
-%define		php_min_version 5.0.0
 %define		plugin		sqlite
+%define		php_min_version 5.0.0
+%include	/usr/lib/rpm/macros.php
 Summary:	DokuWiki helper plugin to easily access a SQLite database
 Name:		dokuwiki-plugin-%{plugin}
-Version:	20100203
+Version:	20120131
 Release:	1
 License:	GPL v2
 Group:		Applications/WWW
-Source0:	http://download.github.com/cosmocode-sqlite-fb39468.zip
-# Source0-md5:	cb14741dd492ae41022b5baa436c78e5
-URL:		http://wiki.splitbrain.org/plugin:sqlite
+Source0:	https://github.com/cosmocode/sqlite/tarball/master/%{plugin}-%{version}.tgz
+# Source0-md5:	2145ad75c6f9c3602b9570e631bb99b2
+URL:		http://www.dokuwiki.org/plugin:sqlite
 BuildRequires:	rpm-php-pearprov >= 4.4.2-11
 BuildRequires:	rpmbuild(macros) >= 1.520
 BuildRequires:	unzip
@@ -22,7 +22,7 @@ BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		dokuconf	/etc/webapps/dokuwiki
-%define		dokudir	/usr/share/dokuwiki
+%define		dokudir		/usr/share/dokuwiki
 %define		plugindir	%{dokudir}/lib/plugins/%{plugin}
 %define		find_lang 	%{_usrlibrpm}/dokuwiki-find-lang.sh %{buildroot}
 
@@ -46,8 +46,6 @@ fi
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{plugindir}
 cp -a . $RPM_BUILD_ROOT%{plugindir}
-rm -f $RPM_BUILD_ROOT%{plugindir}/{CREDITS,changelog}
-rm -f $RPM_BUILD_ROOT%{plugindir}/{COPYING,README,VERSION}
 
 # find locales
 %find_lang %{name}.lang
@@ -65,5 +63,6 @@ fi
 %defattr(644,root,root,755)
 %dir %{plugindir}
 %{plugindir}/*.txt
+%{plugindir}/*.css
 %{plugindir}/*.php
 %{plugindir}/db.sql
