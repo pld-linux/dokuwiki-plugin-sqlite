@@ -51,6 +51,7 @@ fi
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{plugindir}
 cp -a . $RPM_BUILD_ROOT%{plugindir}
+rm $RPM_BUILD_ROOT%{plugindir}/README
 
 # find locales
 %find_lang %{name}.lang
@@ -66,6 +67,7 @@ fi
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
+%doc README
 %dir %{plugindir}
 %{plugindir}/*.txt
 %{plugindir}/*.css
