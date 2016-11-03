@@ -40,7 +40,9 @@ own SQL queries against any of the available databases.
 
 %prep
 %setup -qc
-mv %{plugin}-*/* .
+mv %{plugin}-*/{.??*,*} .
+
+rm .travis.yml
 
 %build
 version=$(awk '/date/{print $2}' plugin.info.txt)
@@ -53,7 +55,8 @@ fi
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{plugindir}
 cp -a . $RPM_BUILD_ROOT%{plugindir}
-rm $RPM_BUILD_ROOT%{plugindir}/README
+%{__rm} -r $RPM_BUILD_ROOT%{plugindir}/_test
+%{__rm} $RPM_BUILD_ROOT%{plugindir}/README
 
 # find locales
 %find_lang %{name}.lang
@@ -75,3 +78,4 @@ fi
 %{plugindir}/*.css
 %{plugindir}/*.php
 %{plugindir}/db.sql
+%{plugindir}/classes
