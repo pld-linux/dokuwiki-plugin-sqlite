@@ -1,27 +1,27 @@
-# $Revision: 1.4 $, $Date: 2012/06/24 21:00:53 $
+%define		subver	2016-08-10
+%define		ver		%(echo %{subver} | tr -d -)
 %define		plugin		sqlite
-%define		php_min_version 5.0.0
+%define		php_min_version 5.3.0
 %include	/usr/lib/rpm/macros.php
 Summary:	DokuWiki helper plugin to easily access a SQLite database
 Name:		dokuwiki-plugin-%{plugin}
-Version:	20120704
-Release:	7
+Version:	%{ver}
+Release:	0.1
 License:	GPL v2
 Group:		Applications/WWW
-#Source0:	https://github.com/cosmocode/sqlite/tarball/pdo/%{plugin}-pdo-%{version}.tgz
-Source0:	https://github.com/Klap-in/sqlite/tarball/pdo/%{plugin}-pdo-%{version}.tgz
-# Source0-md5:	8aae9339ea785655d7c4340b8eb8de37
+Source0:	https://github.com/cosmocode/sqlite/archive/da9a21e/%{plugin}-%{version}.tar.gz
+# Source0-md5:	919e54158e1fa924d74dd6b7e17424e7
 URL:		http://www.dokuwiki.org/plugin:sqlite
 BuildRequires:	rpm-php-pearprov >= 4.4.2-11
 BuildRequires:	rpmbuild(macros) >= 1.520
 BuildRequires:	unzip
-Requires:	dokuwiki >= 20091225
+Requires:	dokuwiki >= 20140505
 Requires:	php(core) >= %{php_min_version}
 Requires:	php(date)
 Requires:	php(pcre)
 # you should pick one:
-Suggests:	php-pdo-sqlite
-Suggests:	php-sqlite
+Suggests:	php(pdo-sqlite)
+Suggests:	php(sqlite)
 Conflicts:	dokuwiki-plugin-data < 20120624
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -40,11 +40,13 @@ own SQL queries against any of the available databases.
 
 %prep
 %setup -qc
-mv *-%{plugin}-*/* .
+mv %{plugin}-*/* .
+
+%build
 version=$(awk '/date/{print $2}' plugin.info.txt)
 if [ "$(echo "$version" | tr -d -)" != %{version} ]; then
 	: %%{version} mismatch
-#	exit 1
+	exit 1
 fi
 
 %install
