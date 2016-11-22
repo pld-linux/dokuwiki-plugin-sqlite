@@ -6,7 +6,7 @@
 Summary:	DokuWiki helper plugin to easily access a SQLite database
 Name:		dokuwiki-plugin-%{plugin}
 Version:	%{ver}
-Release:	0.1
+Release:	1
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	https://github.com/cosmocode/sqlite/archive/da9a21e/%{plugin}-%{version}.tar.gz
