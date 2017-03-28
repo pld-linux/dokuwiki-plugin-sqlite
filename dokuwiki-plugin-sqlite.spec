@@ -1,4 +1,4 @@
-%define		subver	2016-08-10
+%define		subver	2017-02-25
 %define		ver		%(echo %{subver} | tr -d -)
 %define		plugin		sqlite
 %define		php_min_version 5.3.0
@@ -9,9 +9,9 @@ Version:	%{ver}
 Release:	1
 License:	GPL v2
 Group:		Applications/WWW
-Source0:	https://github.com/cosmocode/sqlite/archive/da9a21e/%{plugin}-%{version}.tar.gz
-# Source0-md5:	919e54158e1fa924d74dd6b7e17424e7
-URL:		http://www.dokuwiki.org/plugin:sqlite
+Source0:	https://github.com/cosmocode/sqlite/archive/%{subver}/%{plugin}-%{version}.tar.gz
+# Source0-md5:	8eee1dac5d244a237ebbf225e5c82fcf
+URL:		https://www.dokuwiki.org/plugin:sqlite
 BuildRequires:	rpm-php-pearprov >= 4.4.2-11
 BuildRequires:	rpmbuild(macros) >= 1.520
 BuildRequires:	unzip
