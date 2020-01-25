@@ -2,7 +2,6 @@
 %define		ver		%(echo %{subver} | tr -d -)
 %define		plugin		sqlite
 %define		php_min_version 5.3.0
-%include	/usr/lib/rpm/macros.php
 Summary:	DokuWiki helper plugin to easily access a SQLite database
 Name:		dokuwiki-plugin-%{plugin}
 Version:	%{ver}
