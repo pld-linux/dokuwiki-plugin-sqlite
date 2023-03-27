@@ -12,6 +12,7 @@ Source0:	https://github.com/cosmocode/sqlite/archive/%{subver}/%{plugin}-%{versi
 # Source0-md5:	f079b47abaddc95a69eda5b46f9db67f
 URL:		https://www.dokuwiki.org/plugin:sqlite
 BuildRequires:	rpm-php-pearprov >= 4.4.2-11
+BuildRequires:	rpmbuild(find_lang) >= 1.41
 BuildRequires:	rpmbuild(macros) >= 1.520
 BuildRequires:	unzip
 Requires:	dokuwiki >= 20140505
@@ -28,7 +29,6 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		dokuconf	/etc/webapps/dokuwiki
 %define		dokudir		/usr/share/dokuwiki
 %define		plugindir	%{dokudir}/lib/plugins/%{plugin}
-%define		find_lang 	%{_usrlibrpm}/dokuwiki-find-lang.sh %{buildroot}
 
 %description
 DokuWiki helper plugin to easily access a SQLite database for other
@@ -58,7 +58,7 @@ cp -a . $RPM_BUILD_ROOT%{plugindir}
 %{__rm} $RPM_BUILD_ROOT%{plugindir}/README
 
 # find locales
-%find_lang %{name}.lang
+%find_lang %{name}.lang --with-dokuwiki
 
 %clean
 rm -rf $RPM_BUILD_ROOT
