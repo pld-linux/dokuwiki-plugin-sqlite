@@ -1,4 +1,4 @@
-%define		subver	2018-03-27
+%define		subver	2022-11-29
 %define		ver		%(echo %{subver} | tr -d -)
 %define		plugin		sqlite
 %define		php_min_version 5.3.0
@@ -9,7 +9,7 @@ Release:	1
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	https://github.com/cosmocode/sqlite/archive/%{subver}/%{plugin}-%{version}.tar.gz
-# Source0-md5:	f079b47abaddc95a69eda5b46f9db67f
+# Source0-md5:	b66b00f1786b2771c569a982e1f25aaf
 URL:		https://www.dokuwiki.org/plugin:sqlite
 BuildRequires:	rpm-php-pearprov >= 4.4.2-11
 BuildRequires:	rpmbuild(find_lang) >= 1.41
@@ -41,7 +41,7 @@ own SQL queries against any of the available databases.
 %setup -qc
 mv %{plugin}-*/{.??*,*} .
 
-rm .travis.yml
+rm -r .github
 
 %build
 version=$(awk '/date/{print $2}' plugin.info.txt)
