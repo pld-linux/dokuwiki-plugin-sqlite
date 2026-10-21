@@ -1,7 +1,7 @@
-%define		subver	2022-11-29
+%define		subver	2025-12-01
 %define		ver		%(echo %{subver} | tr -d -)
 %define		plugin		sqlite
-%define		php_min_version 5.3.0
+%define		php_min_version 7.3.0
 Summary:	DokuWiki helper plugin to easily access a SQLite database
 Name:		dokuwiki-plugin-%{plugin}
 Version:	%{ver}
@@ -9,7 +9,7 @@ Release:	1
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	https://github.com/cosmocode/sqlite/archive/%{subver}/%{plugin}-%{version}.tar.gz
-# Source0-md5:	b66b00f1786b2771c569a982e1f25aaf
+# Source0-md5:	b54e5cdfd5fd3b29344b010c995ee762
 URL:		https://www.dokuwiki.org/plugin:sqlite
 BuildRequires:	rpm-php-pearprov >= 4.4.2-11
 BuildRequires:	rpmbuild(find_lang) >= 1.41
@@ -42,6 +42,7 @@ own SQL queries against any of the available databases.
 mv %{plugin}-*/{.??*,*} .
 
 rm -r .github
+rm deleted.files
 
 %build
 version=$(awk '/date/{print $2}' plugin.info.txt)
@@ -73,9 +74,10 @@ fi
 %defattr(644,root,root,755)
 %doc README
 %dir %{plugindir}
-%{plugindir}/*.css
+%{plugindir}/*.less
 %{plugindir}/*.php
 %{plugindir}/*.svg
 %{plugindir}/*.txt
-%{plugindir}/classes
+%{plugindir}/db
 %{plugindir}/db.sql
+%{plugindir}/helper
